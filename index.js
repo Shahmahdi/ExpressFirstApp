@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -15,6 +16,7 @@ mongoose.connection.on('error', err => {
 
 const postRoutes = require('./routes/post');
 app.use(bodyParser.json());
+app.use(expressValidator());
 app.use('/', postRoutes);
 
 const port = process.env.PORT || 3000;
